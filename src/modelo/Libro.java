@@ -9,7 +9,7 @@ public class Libro {
 	
 	private String titulo;
 	private int id;
-	private String libro;
+	private String autor;
 	
 	
 	/**
@@ -29,11 +29,11 @@ public class Libro {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getLibro() {
-		return libro;
+	public String getAutor() {
+		return autor;
 	}
-	public void setLibro(String libro) {
-		this.libro = libro;
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 	
 	

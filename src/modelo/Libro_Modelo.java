@@ -33,7 +33,7 @@ public class Libro_Modelo extends Conector {
 			Libro libro = new Libro();
 
 			libro.setId(rs.getInt("id"));
-			libro.setLibro(rs.getString("libro"));
+			libro.setAutor(rs.getString("libro"));
 			libro.setTitulo(rs.getString("titulo"));
 			libros.add(libro);
 
@@ -66,7 +66,7 @@ public class Libro_Modelo extends Conector {
 			Libro libro = new Libro();
 
 			libro.setId(rs.getInt("id"));
-			libro.setLibro(rs.getString("libro"));
+			libro.setAutor(rs.getString("libro"));
 			libro.setTitulo(rs.getString("titulo"));
 			libros.add(libro);
 
@@ -99,7 +99,7 @@ public class Libro_Modelo extends Conector {
 			Libro libro = new Libro();
 
 			libro.setId(rs.getInt("id"));
-			libro.setLibro(rs.getString("libro"));
+			libro.setAutor(rs.getString("libro"));
 			libro.setTitulo(rs.getString("titulo"));
 			libros.add(libro);
 
@@ -118,7 +118,7 @@ public class Libro_Modelo extends Conector {
 		 */
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("UPDATE libros SET libro= '?', titulo= '?', id='");
-			pst.setString(1, libro.getLibro());
+			pst.setString(1, libro.getAutor());
 			pst.setString(2, libro.getTitulo());
 			pst.setInt(3, libro.getId());
 			pst.executeUpdate();
@@ -152,7 +152,7 @@ public class Libro_Modelo extends Conector {
 		try {
 			PreparedStatement pst = super.conexion
 					.prepareStatement("INSERT INTO libros(libro, titulo, id)) values(?,?,?)");
-			pst.setString(1, libro.getLibro());
+			pst.setString(1, libro.getAutor());
 			pst.setString(2, libro.getTitulo());
 			pst.setInt(3, libro.getId());
 			pst.execute();

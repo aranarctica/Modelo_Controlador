@@ -22,6 +22,7 @@ public class Usuario_Vista {
 
 		final int LISTAR = 1;
 		final int INSERTAR = 2;
+
 		final int SALIR = 0;
 
 		Scanner scan = new Scanner(System.in);
@@ -29,9 +30,9 @@ public class Usuario_Vista {
 		int opcion;
 
 		System.out.println("------MENU------");
-		System.out.println(LISTAR + "Listar");
-		System.out.println(INSERTAR + "Insertar");
-		System.out.println(SALIR + "Salir");
+		System.out.println(LISTAR + " Listar");
+		System.out.println(INSERTAR + " Insertar");
+		System.out.println(SALIR + " Salir");
 
 		opcion = Integer.parseInt(scan.nextLine());
 
@@ -42,16 +43,19 @@ public class Usuario_Vista {
 		case LISTAR:
 			UsuarioModelo usuarioModelo = new UsuarioModelo();
 			ArrayList<Usuario> usuarios = usuarioModelo.selectAll();
-			mostrarUsuarios(usuarios);
+			this.mostrarUsuarios(usuarios);
 
 			break;
 		/**
 		 * creamos la opcion de insertar
 		 */
 		case INSERTAR:
-			
-
+			UsuarioModelo usuarioModelo1 = new UsuarioModelo();
+			Usuario usuario = new Usuario();
+			insertarDatos(usuario);
+			usuarioModelo1.insert(usuario);
 			break;
+
 		/**
 		 * creamos la opcion de salir
 		 */
@@ -66,6 +70,7 @@ public class Usuario_Vista {
 
 	/**
 	 * recorremos el array y mostrar los usuarios
+	 * 
 	 * @param usuarios
 	 */
 	private void mostrarUsuarios(ArrayList<Usuario> usuarios) {
@@ -76,7 +81,47 @@ public class Usuario_Vista {
 		}
 	}
 
+	/**
+	 * Le introducimos los valores a usuario
+	 * 
+	 * @param usuario
+	 */
 
 	private void mostrarUsuarios(Usuario usuario) {
+		System.out.println(usuario);
+		usuario.getApellido();
+		usuario.getNombre();
+		usuario.getEdad();
+		usuario.getId();
+
 	}
+
+	/**
+	 * Pedimos e introducimos los valores al usuario
+	 * 
+	 * @param usuarios
+	 */
+	private void insertarDatos(Usuario usuarios) {
+
+		Scanner scan = new Scanner(System.in);
+		Usuario usuario = new Usuario();
+		System.out.println("Introduce el id:");
+		int id = Integer.parseInt(scan.nextLine());
+		usuario.setId(id);
+		System.out.println("Introduce el nombre:");
+
+		usuario.setNombre(scan.nextLine());
+		System.out.println("Introduce el apellido:");
+		usuario.setApellido(scan.nextLine());
+		System.out.println("Introduce la edad");
+		int edad = Integer.parseInt(scan.nextLine());
+		usuario.getEdad();
+		System.out.println("Introduce el dni");
+		usuario.setDni(scan.nextLine());
+		System.out.println("Introduce la fecha de nacimiento");
+		scan.nextLine();
+		usuario.getFecha_nacimiento();
+
+	}
+
 }

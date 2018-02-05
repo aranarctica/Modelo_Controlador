@@ -1,5 +1,7 @@
 package modelo;
 
+import java.sql.Date;
+
 public class Usuario {
 
 	// atributos
@@ -7,6 +9,24 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	private int edad;
+	private String dni;
+	private Date fecha_nacimiento;
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public Date getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
+	}
 
 	public int getId() {
 		return id;
