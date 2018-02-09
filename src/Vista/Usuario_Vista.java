@@ -29,7 +29,7 @@ public class Usuario_Vista {
 
 		int opcion;
 
-		System.out.println("------MENU------");
+		System.out.println("------MENU USUARIO------");
 		System.out.println(LISTAR + " Listar");
 		System.out.println(INSERTAR + " Insertar");
 		System.out.println(SALIR + " Salir");
@@ -109,7 +109,6 @@ public class Usuario_Vista {
 		int id = Integer.parseInt(scan.nextLine());
 		usuario.setId(id);
 		System.out.println("Introduce el nombre:");
-
 		usuario.setNombre(scan.nextLine());
 		System.out.println("Introduce el apellido:");
 		usuario.setApellido(scan.nextLine());

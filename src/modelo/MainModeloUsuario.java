@@ -1,12 +1,14 @@
 package modelo;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import Vista.Libro_Vista;
+import Vista.Prestamo_Vista;
 import Vista.Usuario_Vista;
 
 public class MainModeloUsuario {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		
 		Usuario_Vista usuariovista = new Usuario_Vista();
 		usuariovista.menuDeUsuario();
@@ -14,8 +16,9 @@ public class MainModeloUsuario {
 		Libro_Vista librovista = new Libro_Vista();
 		librovista.menuDeLibro();
 		
+		Prestamo_Vista prestamovista = new Prestamo_Vista();
+		prestamovista.menuPrestamo();
 			
-		
 		
 		Scanner scan = new Scanner(System.in);
 
@@ -33,6 +36,7 @@ public class MainModeloUsuario {
 
 		UsuarioModelo usuarioModelo = new UsuarioModelo();
 		usuarioModelo.insert(usuario);
+		
 
 	}
 	

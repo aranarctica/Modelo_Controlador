@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author ik012982i9
  *
  */
-public class Libro_Modelo extends Conector {
+public class LibroModelo extends Conector {
 
 	// select all
 	public ArrayList<Libro> selectAll() {
@@ -26,19 +26,19 @@ public class Libro_Modelo extends Conector {
 		 */
 		try {
 			Statement st = super.conexion.createStatement();
-			ResultSet rs = st.executeQuery("select * from libro");
-			while (rs.next())
-				;
+			ResultSet rs = st.executeQuery("select * from libros");
+			while (rs.next()){
+				
 
 			Libro libro = new Libro();
 
 			libro.setId(rs.getInt("id"));
-			libro.setAutor(rs.getString("libro"));
+			libro.setAutor(rs.getString("autor"));
 			libro.setTitulo(rs.getString("titulo"));
 			libros.add(libro);
-
+			}
 			return libros;
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,14 +59,14 @@ public class Libro_Modelo extends Conector {
 		 */
 		try {
 			Statement st = super.conexion.createStatement();
-			ResultSet rs = st.executeQuery("select * from libro where id = '" + id + "' '");
+			ResultSet rs = st.executeQuery("select * from libros where id = '" + id + "' '");
 			while (rs.next())
 				;
 
 			Libro libro = new Libro();
 
 			libro.setId(rs.getInt("id"));
-			libro.setAutor(rs.getString("libro"));
+			libro.setAutor(rs.getString("autor"));
 			libro.setTitulo(rs.getString("titulo"));
 			libros.add(libro);
 
@@ -80,7 +80,7 @@ public class Libro_Modelo extends Conector {
 	}
 
 	// select string titulo
-	public ArrayList<Libro> selectTitulo(String titulo) {
+	public Libro selectTitulo(String titulo) {
 		/**
 		 * creamos el arraylist para meter los atributos del libro en el
 		 */
@@ -92,22 +92,22 @@ public class Libro_Modelo extends Conector {
 		Statement st;
 		try {
 			st = super.conexion.createStatement();
-			ResultSet rs = st.executeQuery("select * from libro where titulo = '" + titulo + "' '");
+			ResultSet rs = st.executeQuery("select * from libros where titulo = '" + titulo + "' '");
 			while (rs.next())
 				;
-
+			if(rs.next());
 			Libro libro = new Libro();
-
+			
 			libro.setId(rs.getInt("id"));
-			libro.setAutor(rs.getString("libro"));
+			libro.setAutor(rs.getString("autor"));
 			libro.setTitulo(rs.getString("titulo"));
 			libros.add(libro);
 
-			return libros;
+			return libro;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return libros;
+		return null;
 
 	}
 
@@ -117,7 +117,7 @@ public class Libro_Modelo extends Conector {
 		 * creamos la conexion con el conector y le introducimos los valores
 		 */
 		try {
-			PreparedStatement pst = super.conexion.prepareStatement("UPDATE libros SET libro= '?', titulo= '?', id='");
+			PreparedStatement pst = super.conexion.prepareStatement("update libros set autor= '?', titulo= '?', id='");
 			pst.setString(1, libro.getAutor());
 			pst.setString(2, libro.getTitulo());
 			pst.setInt(3, libro.getId());
@@ -135,7 +135,7 @@ public class Libro_Modelo extends Conector {
 		 * borrar
 		 */
 		try {
-			PreparedStatement pst = super.conexion.prepareStatement("DELETE FROM libros WHERE id= " + id);
+			PreparedStatement pst = super.conexion.prepareStatement("delete from libros where id= " + id);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -150,11 +150,10 @@ public class Libro_Modelo extends Conector {
 		 */
 
 		try {
-			PreparedStatement pst = super.conexion
-					.prepareStatement("INSERT INTO libros(libro, titulo, id)) values(?,?,?)");
+			PreparedStatement pst = super.conexion.prepareStatement("insert into libros(autor, titulo) values(?,?)");
 			pst.setString(1, libro.getAutor());
 			pst.setString(2, libro.getTitulo());
-			pst.setInt(3, libro.getId());
+
 			pst.execute();
 
 		} catch (SQLException e) {

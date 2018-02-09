@@ -16,7 +16,8 @@ public class UsuarioModelo extends Conector {
 		try {
 			Statement st = super.conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from usuarios");
-			while (rs.next());
+			while (rs.next())
+				;
 			Usuario usuario = new Usuario();
 			usuario.setId(rs.getInt("id"));
 			usuario.setNombre(rs.getString("nombre"));
@@ -24,8 +25,7 @@ public class UsuarioModelo extends Conector {
 			usuario.setEdad(rs.getInt("edad"));
 			usuario.setFecha_nacimiento(rs.getDate("fecha_nacimietnto"));
 			usuarios.add(usuario);
-			
-			
+
 			return usuarios;
 		} catch (SQLException e) {
 
@@ -38,7 +38,7 @@ public class UsuarioModelo extends Conector {
 	public void delete(int id) {
 		// delete from usuarios where id = ?
 		try {
-			PreparedStatement pst = super.conexion.prepareStatement("DELETE FROM usuarios WHERE id= " + id);
+			PreparedStatement pst = super.conexion.prepareStatement("delete from usuarios where id= " + id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -49,7 +49,8 @@ public class UsuarioModelo extends Conector {
 		// where id = ?
 
 		try {
-			PreparedStatement pst = super.conexion.prepareStatement("UPDATE usuarios SET nombre= '?', apellido ='?', edad=? WHERE id=");
+			PreparedStatement pst = super.conexion
+					.prepareStatement("update usuarios set nombre= '?', apellido ='?', edad=? where id=");
 			pst.setString(1, usuario.getNombre());
 			pst.setString(2, usuario.getApellido());
 			pst.setInt(3, usuario.getEdad());
@@ -63,14 +64,15 @@ public class UsuarioModelo extends Conector {
 	public void insert(Usuario usuario) {
 
 		try {
-			PreparedStatement pst = super.conexion.prepareStatement("INSERT INTO usuarios(nombre, apellido, edad) values(?,?,?)");
+			PreparedStatement pst = super.conexion
+					.prepareStatement("insert into usuarios(nombre, apellido, edad) values(?,?,?)");
 			pst.setString(1, usuario.getNombre());
 			pst.setString(2, usuario.getApellido());
 			pst.setInt(3, usuario.getEdad());
 			pst.setString(4, usuario.getDni());
 			pst.setDate(5, usuario.getFecha_nacimiento());
 			java.sql.Date sqlData = new java.sql.Date(usuario.getFecha_nacimiento().getTime());
-			
+
 			pst.execute();
 
 		} catch (SQLException e) {
@@ -80,78 +82,94 @@ public class UsuarioModelo extends Conector {
 
 	public ArrayList<Usuario> selectPorNombre(String nombre) {
 		// crear arraylist
-				ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
-				try {
-					Statement st = super.conexion.createStatement();
-					ResultSet rs = st.executeQuery("select * from usuarios where nombre = '" + nombre + "' '");
-					while (rs.next())
-						;
-					Usuario usuario = new Usuario();
-					usuario.setId(rs.getInt("id"));
-					usuario.setNombre(rs.getString("nombre"));
-					usuario.setApellido(rs.getString("apellido"));
-					usuario.setEdad(rs.getInt("edad"));
-					usuarios.add(usuario);
-					return usuarios;
-				} catch (SQLException e) {
+		try {
+			Statement st = super.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from usuarios where nombre = '" + nombre + "' '");
+			while (rs.next())
+				;
+			Usuario usuario = new Usuario();
+			usuario.setId(rs.getInt("id"));
+			usuario.setNombre(rs.getString("nombre"));
+			usuario.setApellido(rs.getString("apellido"));
+			usuario.setEdad(rs.getInt("edad"));
+			usuarios.add(usuario);
+			return usuarios;
+		} catch (SQLException e) {
 
-					e.printStackTrace();
-				}
+			e.printStackTrace();
+		}
 
-				return usuarios;
+		return usuarios;
 
 	}
 
 	public ArrayList<Usuario> selectMenorDeEdad() {
 		// crear arraylist
-				ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
-				try {
-					Statement st = super.conexion.createStatement();
-					ResultSet rs = st.executeQuery("select * from usuarios where menos de edad < 18");
-					while (rs.next())
-						;
-					Usuario usuario = new Usuario();
-					usuario.setId(rs.getInt("id"));
-					usuario.setNombre(rs.getString("nombre"));
-					usuario.setApellido(rs.getString("apellido"));
-					usuario.setEdad(rs.getInt("edad"));
-					usuarios.add(usuario);
-					return usuarios;
-				} catch (SQLException e) {
+		try {
+			Statement st = super.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from usuarios where menos de edad < 18");
+			while (rs.next())
+				;
+			Usuario usuario = new Usuario();
+			usuario.setId(rs.getInt("id"));
+			usuario.setNombre(rs.getString("nombre"));
+			usuario.setApellido(rs.getString("apellido"));
+			usuario.setEdad(rs.getInt("edad"));
+			usuarios.add(usuario);
+			return usuarios;
+		} catch (SQLException e) {
 
-					e.printStackTrace();
-				}
+			e.printStackTrace();
+		}
 
-				return usuarios;
+		return usuarios;
 
 	}
 
-	public ArrayList<Usuario> selectConttieneapellido(String cadena) {
-		//select * from usuarios where apellido like '%za%'
+	public ArrayList<Usuario> selectContieneapellido(String cadena) {
+		// select * from usuarios where apellido like '%za%'
 		// crear arraylist
-				ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
-				try {
-					Statement st = super.conexion.createStatement();
-					ResultSet rs = st.executeQuery("select * from usuarios where apellido like  '%' "+ cadena + " '%'");
-					while (rs.next())
-						;
-					Usuario usuario = new Usuario();
-					usuario.setId(rs.getInt("id"));
-					usuario.setNombre(rs.getString("nombre"));
-					usuario.setApellido(rs.getString("apellido"));
-					usuario.setEdad(rs.getInt("edad"));
-					usuarios.add(usuario);
-					return usuarios;
-				} catch (SQLException e) {
+		try {
+			Statement st = super.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from usuarios where apellido like  '%' " + cadena + " '%'");
+			while (rs.next())
+				;
+			Usuario usuario = new Usuario();
+			usuario.setId(rs.getInt("id"));
+			usuario.setNombre(rs.getString("nombre"));
+			usuario.setApellido(rs.getString("apellido"));
+			usuario.setEdad(rs.getInt("edad"));
+			usuarios.add(usuario);
+			return usuarios;
+		} catch (SQLException e) {
 
-					e.printStackTrace();
-				}
+			e.printStackTrace();
+		}
 
-				return usuarios;
+		return usuarios;
+
+	}
+	public Usuario selectPorDni(String dni) throws SQLException{
+		PreparedStatement pst = super.conexion.prepareStatement("select * from usuarios where dni = ?");
+		pst.setString(1, dni);
+		ResultSet rs = pst.executeQuery();
 		
-
+		if(rs.next()){
+			Usuario usuario = new Usuario();
+			usuario.setId(rs.getInt("id"));
+			usuario.setNombre(rs.getString("nombre"));
+			usuario.setApellido(rs.getString("apellido"));
+			usuario.setEdad(rs.getInt("edad"));
+			usuario.setDni(rs.getString("dni"));
+			usuario.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
+		}
+		return null;
+		
 	}
 }
