@@ -27,18 +27,17 @@ public class LibroModelo extends Conector {
 		try {
 			Statement st = super.conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from libros");
-			while (rs.next()){
-				
+			while (rs.next()) {
 
-			Libro libro = new Libro();
+				Libro libro = new Libro();
 
-			libro.setId(rs.getInt("id"));
-			libro.setAutor(rs.getString("autor"));
-			libro.setTitulo(rs.getString("titulo"));
-			libros.add(libro);
+				libro.setId(rs.getInt("id"));
+				libro.setAutor(rs.getString("autor"));
+				libro.setTitulo(rs.getString("titulo"));
+				libros.add(libro);
 			}
 			return libros;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -95,9 +94,10 @@ public class LibroModelo extends Conector {
 			ResultSet rs = st.executeQuery("select * from libros where titulo = '" + titulo + "' '");
 			while (rs.next())
 				;
-			if(rs.next());
+			if (rs.next())
+				;
 			Libro libro = new Libro();
-			
+
 			libro.setId(rs.getInt("id"));
 			libro.setAutor(rs.getString("autor"));
 			libro.setTitulo(rs.getString("titulo"));
@@ -114,7 +114,7 @@ public class LibroModelo extends Conector {
 	// update libro libro
 	public void update(Libro libro) {
 		/**
-		 * creamos la conexion con el conector y le introducimos los valores
+		 * creamos la conexion con el conector y le introducimos los valores para actualizar
 		 */
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("update libros set autor= '?', titulo= '?', id='");

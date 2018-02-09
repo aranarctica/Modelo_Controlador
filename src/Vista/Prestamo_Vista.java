@@ -98,21 +98,20 @@ public class Prestamo_Vista {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		// pedir el titulo
 		System.out.println("Inserta el titulo del libro");
-		scan.nextLine();
+		
 
 		// crear el prestamo
 		Prestamo prestamorealizado = new Prestamo();
-		prestamorealizado.getFecha_prestamo();
+		prestamorealizado.setFecha_prestamo(null);
 
 		// update
 		Prestamo prestamoentrega = new Prestamo();
 		prestamoentrega.isEntregado();
 		return true;
-		
+
 	}
 
 }

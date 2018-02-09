@@ -31,9 +31,9 @@ public class Libro_Vista {
 		do {
 			System.out.println("<------MENU LIBRO------>");
 			System.out.println(LISTAR_LIBRO + "<----LISTAR LIBRO---->");
-			System.out.println(INSERTAR_LIBRO +"<----INSERTAR LIBRO---->");
+			System.out.println(INSERTAR_LIBRO + "<----INSERTAR LIBRO---->");
 			System.out.println(UPDATE_LIBRO + "<------ACTUALIZAR LIBRO------>");
-			System.out.println(DELETE_LIBRO +"<------BORRAR LIBRO------>");
+			System.out.println(DELETE_LIBRO + "<------BORRAR LIBRO------>");
 			System.out.println(SALIR + "<------SALIR------>");
 
 			opcion = Integer.parseInt(scan.nextLine());

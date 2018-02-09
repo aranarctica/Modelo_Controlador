@@ -30,39 +30,41 @@ public class PrestamoModelo extends Conector {
 		}
 	}
 
-	public ArrayList<Prestamo> selectAll(){
+	public ArrayList<Prestamo> selectAll() {
 		Statement st;
 		Prestamo prestamo;
 		ArrayList<Prestamo> prestamos = new ArrayList<Prestamo>();
-		try{
-			
-		
-		st = super.conexion.createStatement();
-		ResultSet rs = st.executeQuery("select * from prestamo");
-		while(rs.next()){
-			prestamo = new Prestamo();
-			prestamo.setId(rs.getInt("id"));
-			prestamo.setIdLibro(rs.getInt("id_libro"));
-			prestamo.setIdUsuario(rs.getInt("id_usuario"));
-			prestamo.setFecha_prestamo(rs.getDate("fecha_prestamo"));
-			prestamo.setFecha_limite(rs.getDate("fecha_limite"));
-			prestamo.setEntregado(rs.getBoolean("entregado"));
-			prestamos.add(prestamo);
-			return prestamos;
-		}
-		}catch (SQLException e) {
+		try {
+
+			st = super.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from prestamo");
+			while (rs.next()) {
+				prestamo = new Prestamo();
+				prestamo.setId(rs.getInt("id"));
+				prestamo.setIdLibro(rs.getInt("id_libro"));
+				prestamo.setIdUsuario(rs.getInt("id_usuario"));
+				prestamo.setFecha_prestamo(rs.getDate("fecha_prestamo"));
+				prestamo.setFecha_limite(rs.getDate("fecha_limite"));
+				prestamo.setEntregado(rs.getBoolean("entregado"));
+				prestamos.add(prestamo);
+				return prestamos;
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return prestamos;
 	}
-	
-	public Prestamo getPrestamoNoEntregado(int id_libro, int id_uduario){
+
+	public Prestamo getPrestamoNoEntregado(int id_libro, int id_uduario) {
+		
 		return null;
-		
+
 	}
-	public Prestamo getPrestamoEntregado(Libro libro, Usuario usuario){
+
+	public Prestamo getPrestamoEntregado(Libro libro, Usuario usuario) {
+		
 		return null;
-		
+
 	}
-		
+
 }

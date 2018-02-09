@@ -16,14 +16,13 @@ public class UsuarioModelo extends Conector {
 		try {
 			Statement st = super.conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from usuarios");
-			while (rs.next())
-				;
+			while (rs.next());
 			Usuario usuario = new Usuario();
 			usuario.setId(rs.getInt("id"));
 			usuario.setNombre(rs.getString("nombre"));
 			usuario.setApellido(rs.getString("apellido"));
 			usuario.setEdad(rs.getInt("edad"));
-			usuario.setFecha_nacimiento(rs.getDate("fecha_nacimietnto"));
+			usuario.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
 			usuarios.add(usuario);
 
 			return usuarios;
@@ -112,8 +111,7 @@ public class UsuarioModelo extends Conector {
 		try {
 			Statement st = super.conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from usuarios where menos de edad < 18");
-			while (rs.next())
-				;
+			while (rs.next());
 			Usuario usuario = new Usuario();
 			usuario.setId(rs.getInt("id"));
 			usuario.setNombre(rs.getString("nombre"));
@@ -155,12 +153,13 @@ public class UsuarioModelo extends Conector {
 		return usuarios;
 
 	}
-	public Usuario selectPorDni(String dni) throws SQLException{
+
+	public Usuario selectPorDni(String dni) throws SQLException {
 		PreparedStatement pst = super.conexion.prepareStatement("select * from usuarios where dni = ?");
 		pst.setString(1, dni);
 		ResultSet rs = pst.executeQuery();
-		
-		if(rs.next()){
+
+		if (rs.next()) {
 			Usuario usuario = new Usuario();
 			usuario.setId(rs.getInt("id"));
 			usuario.setNombre(rs.getString("nombre"));
@@ -170,6 +169,6 @@ public class UsuarioModelo extends Conector {
 			usuario.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
 		}
 		return null;
-		
+
 	}
 }

@@ -15,24 +15,23 @@ import modelo.UsuarioModelo;
  */
 public class Usuario_Vista {
 
+	final int LISTAR = 1;
+	final int INSERTAR = 2;
+	final int SALIR = 0;
 	/**
 	 * creamos el menu
 	 */
 	public void menuDeUsuario() {
 
-		final int LISTAR = 1;
-		final int INSERTAR = 2;
-
-		final int SALIR = 0;
 
 		Scanner scan = new Scanner(System.in);
 
 		int opcion;
-
+		do{
 		System.out.println("------MENU USUARIO------");
-		System.out.println(LISTAR + " Listar");
-		System.out.println(INSERTAR + " Insertar");
-		System.out.println(SALIR + " Salir");
+		System.out.println(LISTAR + " <------LISTAR------>");
+		System.out.println(INSERTAR + "<------ INSERTAR------->");
+		System.out.println(SALIR + "<------- SALIR------>");
 
 		opcion = Integer.parseInt(scan.nextLine());
 
@@ -56,16 +55,11 @@ public class Usuario_Vista {
 			usuarioModelo1.insert(usuario);
 			break;
 
-		/**
-		 * creamos la opcion de salir
-		 */
-		case SALIR:
-			System.out.println("------SALIENDO------");
-			break;
+	
 		default:
-			System.out.println("La opcion elegida es incorrecta");
-
+			break;
 		}
+		}while(opcion != SALIR);
 	}
 
 	/**
